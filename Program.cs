@@ -1,4 +1,4 @@
-﻿using System; 
+using System; 
 // The purpose of this program is to simulate tic tac toe for friends and family to play
 // section 02
 // Chris Fowler, Rachel Yorke, Abe Lamoreaux, Mitch Brammer.
@@ -18,7 +18,18 @@ class TicTacToe
         {
             Console.WriteLine("Player " + currentPlayer + "'s turn");
             Console.Write("Enter your choice: ");
-            int choice = int.Parse(Console.ReadLine()); //We are finding where they want to put their mark in the tic tac boxes.
+            string input = Console.ReadLine();
+            int choice;
+
+            if (int.TryParse(input, out int number)) // Ensures only numbers are entered
+            {
+                choice = int.Parse(input); //We are finding where they want to put their mark in the tic tac boxes.
+            }           
+            else
+            {
+                Console.WriteLine("Invalid move. Try again.");
+                continue;
+            }
 
             if (choice < 1 || choice > 9 || board[choice - 1] == 'X' || board[choice - 1] == 'O')
             {
